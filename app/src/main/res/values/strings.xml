@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Hobbyland_v1.1</string>
+    <string name="welcome_text">Welcome to Hobbyland</string>
 </resources>
