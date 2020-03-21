@@ -9,22 +9,27 @@
 
 
     <androidx.appcompat.widget.AppCompatImageView
+        android:transitionName="tsname_open_logo"
         android:id="@+id/imgv_open_logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
         android:layout_marginStart="10dp"
+        android:layout_marginTop="100dp"
         android:layout_marginEnd="10dp"
-        android:src="@drawable/png_logo"
+        android:src="@drawable/logo"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:transitionName="tsname_open_welcome_text"
+        android:padding="5dp"
         android:id="@+id/tv_open_welcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/alpha_echo"
-        android:text="@string/welcome_text"
+        android:text="@string/main_welcome_text"
         android:textAlignment="center"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"

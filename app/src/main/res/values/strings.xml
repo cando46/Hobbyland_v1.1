@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Hobbyland_v1.1</string>
-    <string name="welcome_text">Welcome to Hobbyland</string>
+    <string name="main_welcome_text">Welcome to Hobbyland</string>
+    <string name="login_welcome_text">Hello there, Welcome Back</string>
+    <string name="login_sign_in_to_cont_text">Sign In to continue</string>
+    <string name="login_username_hint">Username</string>
+    <string name="login_password_hint">Password</string>
 </resources>
