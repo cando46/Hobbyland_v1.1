@@ -10,22 +10,24 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imgv_login_logo"
-        android:layout_width="140dp"
-        android:layout_height="140dp"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:src="@drawable/logo"
         android:transitionName="tsname_open_logo" />
 
     <TextView
         android:id="@+id/tv_login_welcome"
-
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
         android:fontFamily="@font/eacologica_round_slab_ffp"
         android:text="@string/login_welcome_text"
         android:textColor="#000000"
-        android:textSize="40sp"
+        android:textSize="36sp"
         android:transitionName="tsname_open_welcome_text" />
 
     <TextView
@@ -33,21 +35,25 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
+        android:layout_marginTop="5dp"
         android:text="@string/login_sign_in_to_cont_text"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:transitionName="tsname_sign_in_up_to_text" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:orientation="vertical">
+        android:layout_margin="16dp"
+        android:orientation="vertical"
+        android:padding="8dp">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/etlayout_login_username"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/login_username_hint">
+            android:hint="@string/login_username_hint"
+            android:transitionName="tsname_username_et">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -61,6 +67,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/login_password_hint"
+            android:transitionName="tsname_password_et"
             app:passwordToggleEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -71,34 +78,44 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
+            android:id="@+id/btn_login_forget_password"
+            style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
+            android:layout_gravity="end"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
             android:backgroundTint="#00000000"
             android:elevation="0dp"
+            android:gravity="end|center"
             android:text="Forget Password?"
             android:textAllCaps="false"
             android:textColor="#000"
             android:textSize="14sp" />
 
         <Button
+            android:id="@+id/btn_login_sign_in"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Sign In"
-            android:textAllCaps="false" />
+            android:textAllCaps="false"
+            android:textSize="18sp"
+            android:transitionName="tsname_sign_in_btn" />
 
         <Button
+            android:id="@+id/btn_login_sign_up"
+            style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_margin="6dp"
             android:backgroundTint="#00000000"
             android:elevation="0dp"
             android:text="New User? SIGN UP!!"
             android:textAllCaps="false"
             android:textColor="#000"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:transitionName="tsname_new_user_signup_btn" />
 
 
     </LinearLayout>
