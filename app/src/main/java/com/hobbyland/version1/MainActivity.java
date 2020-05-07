@@ -1,6 +1,7 @@
 package com.hobbyland.version1;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import android.app.ActivityOptions;
 import android.content.Intent;
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         init();
         goLoginScreen();
+
 
     }
 

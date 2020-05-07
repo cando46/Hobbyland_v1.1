@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+    android:id="@+id/bottom_home"
+    android:title="Home"
+    android:icon="@drawable/ic_home_white_24dp"
+    app:cnb_iconColor="#ffffff"
+    app:cnb_backgroundColor="#99ff0000"
+    app:cnb_textColor="#fff"/>
+
+    <item
+        android:id="@+id/bottom_my_events"
+        android:title="My Events"
+        android:icon="@drawable/ic_event"
+        app:cnb_iconColor="#ffffff"
+        app:cnb_backgroundColor="#99ff0000"
+        app:cnb_textColor="#fff"/>
+    <item
+        android:id="@+id/Messages"
+        android:title="Messages"
+        android:icon="@drawable/ic_chatting"
+        app:cnb_iconColor="#ffffff"
+        app:cnb_backgroundColor="#99ff0000"
+        app:cnb_textColor="#fff"/>
+    <item
+        android:id="@+id/Settings"
+        android:title="Settings"
+        android:icon="@drawable/ic_settings_white_24dp"
+        app:cnb_iconColor="#ffffff"
+        app:cnb_backgroundColor="#99ff0000"
+        app:cnb_textColor="#fff"/>
+</menu>
