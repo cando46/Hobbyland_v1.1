@@ -1,11 +1,10 @@
 package com.hobbyland.version1;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
+import android.view.WindowManager;
+
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
 
@@ -14,12 +13,11 @@ public class HomeActivity extends AppCompatActivity {
     ChipNavigationBar navigationBar;
     FragmentManager fragmentManager;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_home);
-
         navigationBar=findViewById(R.id.chip_nav);
         if(savedInstanceState==null){
             navigationBar.setItemSelected(R.id.bottom_home,true);
@@ -45,7 +43,6 @@ public class HomeActivity extends AppCompatActivity {
                         case R.id.Settings:
                         fragment= new SettingsFragment();
                         break;
-
                 }
                 if(fragment!=null){
                     fragmentManager= getSupportFragmentManager();
