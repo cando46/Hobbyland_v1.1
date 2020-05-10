@@ -63,6 +63,7 @@
         </RelativeLayout>
 
         <GridLayout
+            android:layout_marginTop="36dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:alignmentMode="alignMargins"
@@ -96,7 +97,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
-                        android:text="Find Partner"
+                        android:text="Find\nPartner"
+                        android:textAlignment="center"
                         android:textColor="#000"
                         android:textSize="18sp"
                         android:textStyle="bold" />
@@ -123,13 +125,14 @@
                     <ImageView
                         android:layout_width="80dp"
                         android:layout_height="80dp"
-                        android:src="@drawable/find_partner" />
+                        android:src="@drawable/my_events" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
-                        android:text="Events"
+                        android:text="My\nEvents"
+                        android:textAlignment="center"
                         android:textColor="#000"
                         android:textSize="18sp"
                         android:textStyle="bold" />
@@ -156,13 +159,15 @@
                     <ImageView
                         android:layout_width="80dp"
                         android:layout_height="80dp"
-                        android:src="@drawable/find_partner" />
+                        android:src="@drawable/friends" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
+                        android:layout_marginBottom="12dp"
                         android:text="Friends"
+                        android:textAlignment="center"
                         android:textColor="#000"
                         android:textSize="18sp"
                         android:textStyle="bold" />
@@ -189,12 +194,13 @@
                     <ImageView
                         android:layout_width="80dp"
                         android:layout_height="80dp"
-                        android:src="@drawable/find_partner" />
+                        android:src="@drawable/settings" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
+                        android:layout_marginBottom="12dp"
                         android:text="Settings"
                         android:textColor="#000"
                         android:textSize="18sp"
