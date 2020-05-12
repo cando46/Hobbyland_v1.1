@@ -1,5 +1,6 @@
 package com.hobbyland.version1;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.cardview.widget.CardView;
@@ -102,6 +103,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     }
 
     private void onClickFindPartner() {
-        Toast.makeText(getContext(),"Find Partner Clicked",Toast.LENGTH_LONG).show();
+        Intent intent= new Intent(getActivity(),FindPartnerActivity.class);
+        startActivity(intent);
     }
 }

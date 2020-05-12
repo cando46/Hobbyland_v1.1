@@ -8,4 +8,13 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    
+    <string-array name="year_of_exp">
+        <item>Select Year of Experience</item>
+        <item>1 Year</item>
+        <item>2 Year</item>
+        <item>3 Year</item>
+        <item>4 Year</item>
+        <item>5 Years+</item>
+    </string-array>
 </resources>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FindPartner.FpStepTwoFragment">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="20dp"
+            android:fontFamily="@font/eacologica_round_slab_ffp"
+            android:padding="5dp"
+            android:text="Describe Yourself"
+            android:textAlignment="center"
+            android:textSize="32sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="20dp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imv_step2_hobby"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/swimming"/>
+
+            <TextView
+                android:id="@+id/tv_step2_hobbyName"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Hobby Name"
+                android:gravity="center"
+                android:textSize="28sp"
+                android:layout_gravity="center"
+                android:textStyle="bold"
+                android:textColor="#000000"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            android:text="How many years of experience do you have?"/>
+        <Spinner
+            android:id="@+id/spinner_step2_year_of_exp"
+            android:layout_margin="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="16dp"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            android:text="How many years of experience do you have?"/>
+        <Spinner
+            android:layout_margin="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+
+
+    </LinearLayout>
+
+
+
+
+</RelativeLayout>
