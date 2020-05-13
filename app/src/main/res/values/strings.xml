@@ -17,4 +17,37 @@
         <item>4 Year</item>
         <item>5 Years+</item>
     </string-array>
+    <string-array name="knowledge">
+        <item>Select Knowledge Level</item>
+        <item>Fundamental Awareness</item>
+        <item>Novice</item>
+        <item>Intermediate</item>
+        <item>Advanced</item>
+        <item>Expert</item>
+    </string-array>
+    <string-array name="skill_level">
+        <item>Select Skill Level</item>
+        <item>Beginner</item>
+        <item>Apprentice</item>
+        <item>Specialist</item>
+        <item>Expert</item>
+        <item>Master</item>
+    </string-array>
+    <string-array name="age_ranges">
+        <item>Select Age Range</item>
+        <item>It doesn\'t matter</item>
+        <item>18 \- 25y</item>
+        <item>25y \- 30y</item>
+        <item>30y \- 45y</item>
+        <item>45y \- 65y</item>
+    </string-array>
+    <string-array name="location_range">
+        <item>Select Location Range</item>
+        <item>It doesn\'t matter</item>
+        <item>10 km Radius</item>
+        <item>20 km Radius</item>
+        <item>30 km Radius</item>
+        <item>40 km Radius</item>
+        <item>100 km Radius</item>
+    </string-array>
 </resources>

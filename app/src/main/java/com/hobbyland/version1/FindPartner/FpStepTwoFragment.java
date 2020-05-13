@@ -1,7 +1,9 @@
 package com.hobbyland.version1.FindPartner;
 
+import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -9,23 +11,49 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.hobbyland.version1.R;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FpStepTwoFragment extends Fragment implements AdapterView.OnItemSelectedListener {
+public class FpStepTwoFragment extends Fragment implements AdapterView.OnItemSelectedListener, View.OnClickListener {
 
-    Spinner yearOfExperience;
+    private FragmentStepTwoListener stepTwoListener;
+    Button next;
+    Spinner spinnerYearOfExperience;
+    Spinner spinnerKnowledgeLevel;
+    Spinner spinnerSkillLevel;
     ImageView hobby;
     TextView hobbyName;
+    int yearOfExp, knowledge, skill;
 
     public FpStepTwoFragment() {
         // Required empty public constructor
+    }
+
+    public interface FragmentStepTwoListener {
+
+        void inputStepTwoSent(int yearOfExperience, int knowledgeLevel, int skillLevel, int HobbyID);
+
+    }
+
+    //ON CLICK FOR NEXT BUTTON
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.btn_step2_next) {
+            if (yearOfExp == 0 || skill == 0 || knowledge == 0) {
+                Toast.makeText(getContext(), "Complete The Missing Informations!", Toast.LENGTH_SHORT).show();
+            } else {
+                stepTwoListener.inputStepTwoSent(yearOfExp,knowledge,skill,getArguments().getInt("HOBBY_ID"));
+            }
+        }
+
     }
 
 
@@ -39,16 +67,32 @@ public class FpStepTwoFragment extends Fragment implements AdapterView.OnItemSel
     }
 
     private void init(View view) {
-        hobby=view.findViewById(R.id.imv_step2_hobby);
-        hobbyName=view.findViewById(R.id.tv_step2_hobbyName);
+        hobby = view.findViewById(R.id.imv_step2_hobby);
+        hobbyName = view.findViewById(R.id.tv_step2_hobbyName);
 
-        yearOfExperience=view.findViewById(R.id.spinner_step2_year_of_exp);
+        spinnerYearOfExperience = view.findViewById(R.id.spinner_step2_year_of_exp);
+        spinnerKnowledgeLevel = view.findViewById(R.id.spinner_step2_knowledge);
+        spinnerSkillLevel = view.findViewById(R.id.spinner_step2_skill_level);
 
-        ArrayAdapter<CharSequence> adapter =ArrayAdapter.createFromResource(this.getContext(),
-                R.array.year_of_exp,android.R.layout.simple_spinner_item);
+        //ADAPTER FOR YEAR OF EXPERIENCE SPINNER
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this.getContext(),
+                R.array.year_of_exp, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        yearOfExperience.setAdapter(adapter);
-        yearOfExperience.setOnItemSelectedListener(this);
+        spinnerYearOfExperience.setAdapter(adapter);
+        spinnerYearOfExperience.setOnItemSelectedListener(this);
+        //ADAPTER FOR KNOWLEDGE SPINNER
+        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this.getContext(),
+                R.array.knowledge, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerKnowledgeLevel.setAdapter(adapter2);
+        spinnerKnowledgeLevel.setOnItemSelectedListener(this);
+        //ADAPTER FOR SKILL LEVEL SPINNER
+        ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(this.getContext(),
+                R.array.skill_level, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerSkillLevel.setAdapter(adapter3);
+        spinnerSkillLevel.setOnItemSelectedListener(this);
+
 
         /*HOBBY ID'S
          * FOOTBALL=1
@@ -60,7 +104,7 @@ public class FpStepTwoFragment extends Fragment implements AdapterView.OnItemSel
          * TABLE_TENNIS=7
          * SWIMMING=8
          * */
-        switch (getArguments().getInt("HOBBY_ID",0)){
+        switch (getArguments().getInt("HOBBY_ID")) {
             case 1:
                 hobbyName.setText("Football");
                 hobby.setImageResource(R.drawable.football);
@@ -98,6 +142,8 @@ public class FpStepTwoFragment extends Fragment implements AdapterView.OnItemSel
                 break;
         }
 
+        next = view.findViewById(R.id.btn_step2_next);
+        next.setOnClickListener(this);
     }
 
     public static FpStepTwoFragment newInstance(int hobbyId) {
@@ -112,11 +158,54 @@ public class FpStepTwoFragment extends Fragment implements AdapterView.OnItemSel
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        switch (parent.getId()) {
+            case R.id.spinner_step2_year_of_exp:
+                onSelectedYearOfExp(position);
+                break;
+            case R.id.spinner_step2_knowledge:
+                onSelectedKnowledge(position);
+                break;
+            case R.id.spinner_step2_skill_level:
+                onSelectedSkillLevel(position);
+                break;
+        }
 
+    }
+
+
+    private void onSelectedYearOfExp(int position) {
+        this.yearOfExp = position;
+
+    }
+
+    private void onSelectedKnowledge(int position) {
+        this.knowledge = position;
+
+    }
+
+    private void onSelectedSkillLevel(int position) {
+        this.skill = position;
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if(context instanceof FragmentStepTwoListener){
+            stepTwoListener=(FragmentStepTwoListener)context;
+        }
+        else{
+            throw new RuntimeException(context.toString()+"must implement FragmentStepTwoListener");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        stepTwoListener=null;
     }
 }
