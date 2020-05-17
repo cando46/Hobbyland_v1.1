@@ -94,11 +94,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     }
 
     private void onClickCreateEvent() {
-        Toast.makeText(getContext(),"Create Event Clicked",Toast.LENGTH_LONG).show();
+        Intent intent= new Intent(getActivity(),CreateEventActivity.class);
+        startActivity(intent);
     }
 
     private void onClickFriends() {
-        Toast.makeText(getContext(),"Friends Clicked",Toast.LENGTH_LONG).show();
+        Intent intent= new Intent(getActivity(),FriendsActivity.class);
+        startActivity(intent);
 
     }
 

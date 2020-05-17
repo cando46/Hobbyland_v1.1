@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="4dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="4dp">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        app:civ_border_color="@color/Blue"
+        app:civ_border_width="2dp"
+        android:id="@+id/cimv_friend_item_photo"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:padding="2dp"/>
+    <TextView
+        android:id="@+id/tv_friend_item_username"
+        android:layout_toEndOf="@id/cimv_friend_item_photo"
+        android:textSize="20sp"
+        android:textColor="#000"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:text="Username"
+        />
+        <ImageView
+            android:id="@+id/imv_friend_item_send_message"
+            android:src="@drawable/send_message"
+            android:layout_toLeftOf="@id/imv_friend_item_delete_user"
+            android:layout_below="@id/tv_friend_item_username"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"/>
+        <ImageView
+            android:id="@+id/imv_friend_item_delete_user"
+            android:src="@drawable/delete_friend"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@id/tv_friend_item_username"
+            android:layout_marginEnd="20dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"/>
+
+    </RelativeLayout>
+    
+</androidx.cardview.widget.CardView>

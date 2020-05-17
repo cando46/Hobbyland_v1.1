@@ -64,10 +64,13 @@ public class FpStepThreeFragment extends Fragment implements AdapterView.OnItemS
         }
     }
 
+
+    //TO DO
     private void onItemSelectedLocationRange(int position) {
 
     }
 
+    //TO DO
     private void onItemSelectedAgeRange(int position) {
 
     }

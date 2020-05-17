@@ -36,10 +36,6 @@ public class FindPartnerActivity extends AppCompatActivity implements FpStepOneF
                         R.anim.slide_left_to_right, R.anim.exit_left_to_right)
                 .replace(R.id.fragment_container_find_partner, stepOneFragment)
                 .commit();
-
-
-
-
     }
 
     //StepOne Fragment sent the data about selected hobby as HobbyID

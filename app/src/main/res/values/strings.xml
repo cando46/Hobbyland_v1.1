@@ -8,7 +8,8 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    
+    <string name="event_title"><u>Event Title</u></string>
+
     <string-array name="year_of_exp">
         <item>Select Year of Experience</item>
         <item>1 Year</item>
@@ -27,6 +28,14 @@
     </string-array>
     <string-array name="skill_level">
         <item>Select Skill Level</item>
+        <item>Beginner</item>
+        <item>Apprentice</item>
+        <item>Specialist</item>
+        <item>Expert</item>
+        <item>Master</item>
+    </string-array>
+    <string-array name="skill_level_preferred">
+        <item>All skill levels can participate.</item>
         <item>Beginner</item>
         <item>Apprentice</item>
         <item>Specialist</item>
