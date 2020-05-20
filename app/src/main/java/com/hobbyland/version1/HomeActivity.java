@@ -40,9 +40,6 @@ public class HomeActivity extends AppCompatActivity {
                         case R.id.Messages:
                         fragment= new MessagesFragment();
                         break;
-                        case R.id.Settings:
-                        fragment= new SettingsFragment();
-                        break;
                 }
                 if(fragment!=null){
                     fragmentManager= getSupportFragmentManager();

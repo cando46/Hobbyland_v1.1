@@ -4,6 +4,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".JoinEventActivity">
+    android:background="@color/transparentBlue"
+    tools:context=".JoinEvent.JoinEventActivity">
+
+    <TextView
+        android:id="@+id/tv_friends_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#d7eef7"
+        android:fontFamily="@font/eacologica_round_slab_ffp"
+        android:padding="5dp"
+        android:text="EVENTS"
+        android:textAlignment="center"
+        android:textSize="32sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_join_event_events"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_friends_header" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

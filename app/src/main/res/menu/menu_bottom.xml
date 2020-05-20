@@ -24,11 +24,5 @@
         app:cnb_iconColor="#ffffff"
         app:cnb_backgroundColor="#99ff0000"
         app:cnb_textColor="#fff"/>
-    <item
-        android:id="@+id/Settings"
-        android:title="Settings"
-        android:icon="@drawable/ic_settings_white_24dp"
-        app:cnb_iconColor="#ffffff"
-        app:cnb_backgroundColor="#99ff0000"
-        app:cnb_textColor="#fff"/>
+
 </menu>

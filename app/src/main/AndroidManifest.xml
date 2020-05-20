@@ -4,18 +4,20 @@
 
     <application
         android:allowBackup="true"
-        android:largeHeap="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SettingsActivity"></activity>
+        <activity android:name=".Profile.ProfileVisitorActivity"></activity>
+        <activity android:name=".Profile.ProfileOwnerActivity" />
+        <activity android:name=".SettingsActivity" />
         <activity android:name=".LookAroundActivity" />
-        <activity android:name=".JoinEventActivity" />
-        <activity android:name=".CreateEventActivity" />
-        <activity android:name=".FriendsActivity" />
-        <activity android:name=".FindPartnerActivity" />
+        <activity android:name=".JoinEvent.JoinEventActivity" />
+        <activity android:name=".CreateEvent.CreateEventActivity" />
+        <activity android:name=".Friends.FriendsActivity" />
+        <activity android:name=".FindPartner.FindPartnerActivity" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".SignUpActivity" />
         <activity android:name=".LoginActivity" />

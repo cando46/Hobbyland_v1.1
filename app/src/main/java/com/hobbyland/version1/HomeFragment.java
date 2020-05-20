@@ -9,8 +9,12 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.Toast;
+
+import com.hobbyland.version1.CreateEvent.CreateEventActivity;
+import com.hobbyland.version1.FindPartner.FindPartnerActivity;
+import com.hobbyland.version1.Friends.FriendsActivity;
+import com.hobbyland.version1.JoinEvent.JoinEventActivity;
 
 
 /**
@@ -89,23 +93,24 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     }
 
     private void onClickJoinEvent() {
-        Toast.makeText(getContext(),"Join Event Clicked",Toast.LENGTH_LONG).show();
+        Intent intent= new Intent(getActivity(), JoinEventActivity.class);
+        startActivity(intent);
 
     }
 
     private void onClickCreateEvent() {
-        Intent intent= new Intent(getActivity(),CreateEventActivity.class);
+        Intent intent= new Intent(getActivity(), CreateEventActivity.class);
         startActivity(intent);
     }
 
     private void onClickFriends() {
-        Intent intent= new Intent(getActivity(),FriendsActivity.class);
+        Intent intent= new Intent(getActivity(), FriendsActivity.class);
         startActivity(intent);
 
     }
 
     private void onClickFindPartner() {
-        Intent intent= new Intent(getActivity(),FindPartnerActivity.class);
+        Intent intent= new Intent(getActivity(), FindPartnerActivity.class);
         startActivity(intent);
     }
 }

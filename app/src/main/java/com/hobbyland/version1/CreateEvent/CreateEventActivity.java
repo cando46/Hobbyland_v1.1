@@ -1,4 +1,4 @@
-package com.hobbyland.version1;
+package com.hobbyland.version1.CreateEvent;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import com.hobbyland.version1.CreateEvent.CeStepOneFragment;
 import com.hobbyland.version1.CreateEvent.CeStepTwoFragment;
+import com.hobbyland.version1.R;
 
 public class CreateEventActivity extends AppCompatActivity implements CeStepOneFragment.CeStepOneListener, CeStepTwoFragment.CeStepTwoListener {
 

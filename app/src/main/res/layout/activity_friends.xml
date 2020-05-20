@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:background="#d7eef7"
     android:layout_height="match_parent"
-    tools:context=".FriendsActivity">
+    tools:context=".Friends.FriendsActivity">
 
     <TextView
         android:background="#d7eef7"

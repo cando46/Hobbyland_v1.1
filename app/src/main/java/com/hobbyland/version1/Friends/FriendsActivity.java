@@ -1,4 +1,4 @@
-package com.hobbyland.version1;
+package com.hobbyland.version1.Friends;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -8,6 +8,7 @@ import android.os.Bundle;
 
 import com.hobbyland.version1.Friends.FriendAdapter;
 import com.hobbyland.version1.Friends.FriendItem;
+import com.hobbyland.version1.R;
 
 import java.util.ArrayList;
 

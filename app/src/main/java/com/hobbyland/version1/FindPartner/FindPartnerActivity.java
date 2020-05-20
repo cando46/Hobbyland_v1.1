@@ -1,4 +1,4 @@
-package com.hobbyland.version1;
+package com.hobbyland.version1.FindPartner;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
@@ -9,6 +9,7 @@ import com.hobbyland.version1.FindPartner.FpResultsFragment;
 import com.hobbyland.version1.FindPartner.FpStepOneFragment;
 import com.hobbyland.version1.FindPartner.FpStepThreeFragment;
 import com.hobbyland.version1.FindPartner.FpStepTwoFragment;
+import com.hobbyland.version1.R;
 
 public class FindPartnerActivity extends AppCompatActivity implements FpStepOneFragment.FragmentStepOneListener, FpStepTwoFragment.FragmentStepTwoListener, FpStepThreeFragment.FragmentStepThreeListener {
 
