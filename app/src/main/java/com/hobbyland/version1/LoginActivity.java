@@ -23,7 +23,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 // implements View.OnClickListener
-
+// SALAK CANDO BİRAZ KOD YAZ PU
 public class LoginActivity extends AppCompatActivity {
 
     Button signUp, forgotPassword, signIn;
