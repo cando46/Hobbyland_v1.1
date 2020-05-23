@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "914127183892",
+    "firebase_url": "https://hobbyland-e9f0d.firebaseio.com",
+    "project_id": "hobbyland-e9f0d",
+    "storage_bucket": "hobbyland-e9f0d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:914127183892:android:e1478fdc0219d9e31b0701",
+        "android_client_info": {
+          "package_name": "com.hobbyland.version1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "914127183892-u7lbqm52v65g1sn6h1h2jpem5jcf04jn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-gGJofPXk943BmHPPOPzYIRlYuSiWMsw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "914127183892-u7lbqm52v65g1sn6h1h2jpem5jcf04jn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

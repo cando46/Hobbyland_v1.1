@@ -130,11 +130,12 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
+                android:id="@+id/btn_signUp_register"
                 android:transitionName="tsname_sign_in_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:text="Go Verification Step"
+                android:text="Register"
                 android:textAllCaps="false"
                 android:textSize="18sp" />
 
@@ -144,6 +145,7 @@
     </androidx.core.widget.NestedScrollView>
 
     <Button
+        android:id="@+id/btn_signUp_already_have_account"
         android:layout_gravity="center"
         android:transitionName="tsname_new_user_signup_btn"
         style="@style/Widget.AppCompat.Button.Borderless"

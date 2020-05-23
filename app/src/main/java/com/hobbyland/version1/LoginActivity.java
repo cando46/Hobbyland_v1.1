@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -20,6 +21,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     ImageView logo;
     TextView welcome,signInTo;
     TextInputLayout username,password;
+    FirebaseAuth firebaseAuth;
 
 
     @Override
@@ -44,6 +46,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         forgotPassword.setOnClickListener(this);
         signUp.setOnClickListener(this);
 
+        //firebase set up and if user logged in directly opens home
+        firebaseAuth=FirebaseAuth.getInstance();
+        if(firebaseAuth.getCurrentUser() !=null){
+            startActivity(new Intent(getApplicationContext(),HomeActivity.class));
+            finish();
+        }
+
     }
 
 
@@ -66,6 +75,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private void OnClickForgetPassword() {
     }
 
+
+    //Üye ol a basıldığında olacaklar
     private void OnClickSignUp() {
         Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
         Pair[] pairs = new Pair[6];
@@ -81,7 +92,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         startActivity(intent,options.toBundle());
     }
 
+
+    //Sign in butonuna basılınca yapılacak işlemler
     private void OnClickSignIn() {
+
+
+        //home aktivitesini başlatır
         Intent intent= new Intent(LoginActivity.this,HomeActivity.class);
         startActivity(intent);
     }
