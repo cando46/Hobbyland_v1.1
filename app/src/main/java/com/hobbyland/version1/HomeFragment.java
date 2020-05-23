@@ -84,7 +84,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     }
 
     private void onClickSettings() {
-        Toast.makeText(getContext(),"Settings Clicked",Toast.LENGTH_LONG).show();
+        Intent intent= new Intent(getActivity(), SettingsActivity.class);
+        startActivity(intent);
 
     }
 
