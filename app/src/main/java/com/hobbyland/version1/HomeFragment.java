@@ -3,14 +3,22 @@ package com.hobbyland.version1;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.hobbyland.version1.CreateEvent.CreateEventActivity;
 import com.hobbyland.version1.FindPartner.FindPartnerActivity;
 import com.hobbyland.version1.Friends.FriendsActivity;
@@ -28,6 +36,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     CardView joinEvent;
     CardView lookAround;
     CardView settings;
+    TextView username;
+
+    DatabaseReference mRef;
+    String currentUserName;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -44,6 +56,20 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     }
 
     private void init(View view) {
+        mRef= FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        mRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    currentUserName=dataSnapshot.child("username").getValue().toString();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        username=view.findViewById(R.id.tv_home_username);
         findPartner = view.findViewById(R.id.cv_home_find_partner);
         friends = view.findViewById(R.id.cv_home_friends);
         createEvent = view.findViewById(R.id.cv_home_create_event);
@@ -51,6 +77,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         lookAround = view.findViewById(R.id.cv_home_look_around);
         settings = view.findViewById(R.id.cv_home_settings);
         //Set on click listener for card views
+        username.setText(currentUserName);
         findPartner.setOnClickListener(this);
         friends.setOnClickListener(this);
         createEvent.setOnClickListener(this);
