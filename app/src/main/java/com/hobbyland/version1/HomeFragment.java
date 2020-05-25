@@ -64,7 +64,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     CircleImageView userProfile;
     ProgressDialog progressDialog;
     DatabaseReference mRef;
-    String currentUserName = FirebaseAuth.getInstance().getCurrentUser().getUid();
+    String currentUserName ;
+    String currentUserLocation;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -94,6 +95,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 currentUserName = dataSnapshot.child("username").getValue(String.class);
+                String state=dataSnapshot.child("LastKnownLocation").child("state").getValue(String.class);
+                String country=dataSnapshot.child("LastKnownLocation").child("country").getValue(String.class);
+                currentUserLocation=state+","+country;
                 username.setText(currentUserName);
                 progressDialog.dismiss();
             }
