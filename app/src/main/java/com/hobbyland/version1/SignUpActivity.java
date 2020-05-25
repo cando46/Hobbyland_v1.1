@@ -57,6 +57,8 @@ public class SignUpActivity extends AppCompatActivity {
         goLogin = findViewById(R.id.btn_signUp_already_have_account);
 
         firebaseAuth = FirebaseAuth.getInstance();
+        reference=FirebaseDatabase.getInstance().getReference("Users");
+
 
         //progress dialog set up
         progressDialog=new ProgressDialog(this);
@@ -77,11 +79,11 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Getting all user values
-                String name = fullName.getEditText().getText().toString().trim();
-                String uName = username.getEditText().getText().toString().trim();
-                String pass = password.getEditText().getText().toString().trim();
-                String phoneNo = phone.getEditText().getText().toString().trim();
-                String mail = email.getEditText().getText().toString().trim();
+                final String name = fullName.getEditText().getText().toString().trim();
+                final String uName = username.getEditText().getText().toString().trim();
+                final String pass = password.getEditText().getText().toString().trim();
+                final String phoneNo = phone.getEditText().getText().toString().trim();
+                final String mail = email.getEditText().getText().toString().trim();
 
                 if (TextUtils.isEmpty(name)) {
                     fullName.getEditText().setError("Full Name is Required");
@@ -118,9 +120,20 @@ public class SignUpActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
                         if(task.isSuccessful()){
-                            progressDialog.dismiss();
-                            Toast.makeText(getApplicationContext(),"User Created Succesfully",Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(),HomeActivity.class));
+
+                            UserHelperClass user = new UserHelperClass(name,uName,mail,phoneNo,pass);
+                            FirebaseDatabase.getInstance().getReference("Users")
+                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                    .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    progressDialog.dismiss();
+                                    Toast.makeText(getApplicationContext(),"User Created Successfully",Toast.LENGTH_SHORT).show();
+                                    startActivity(new Intent(getApplicationContext(),HomeActivity.class));
+                                }
+                            });
+
+
                         }else{
                             progressDialog.dismiss();
                             Toast.makeText(getApplicationContext(),"Error! "+ task.getException().getMessage(),Toast.LENGTH_SHORT).show();
