@@ -82,11 +82,15 @@ public class HomeActivity extends AppCompatActivity{
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                String city = addresses.get(0).getLocality();
-                String state = addresses.get(0).getAdminArea();
-                String country = addresses.get(0).getCountryName();
-                String postalCode = addresses.get(0).getPostalCode();
-                String knownName = addresses.get(0).getFeatureName();
+                String state;
+                String country;
+                if(addresses.get(0).getAdminArea()!=null && addresses.get(0).getCountryName()!=null){
+                     state = addresses.get(0).getAdminArea();
+                     country = addresses.get(0).getCountryName();
+                }else {
+                    state="Sea";
+                    country=" ";
+                }
                 sendLocationDataToFirebase(latitude,longitude,state,country);
                 Log.d(TAG, "onLocationResult: " + location.toString());
             }
