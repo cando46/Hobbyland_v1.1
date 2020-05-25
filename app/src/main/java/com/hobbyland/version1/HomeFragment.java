@@ -39,7 +39,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     TextView username;
 
     DatabaseReference mRef;
-    String currentUserName;
+    String currentUserName=FirebaseAuth.getInstance().getCurrentUser().getUid();
 
     public HomeFragment() {
         // Required empty public constructor
@@ -56,18 +56,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     }
 
     private void init(View view) {
-        mRef= FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
-        mRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    currentUserName=dataSnapshot.child("username").getValue().toString();
-            }
+        mRef= FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("username");
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
 
         username=view.findViewById(R.id.tv_home_username);
         findPartner = view.findViewById(R.id.cv_home_find_partner);
@@ -77,13 +67,26 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         lookAround = view.findViewById(R.id.cv_home_look_around);
         settings = view.findViewById(R.id.cv_home_settings);
         //Set on click listener for card views
-        username.setText(currentUserName);
         findPartner.setOnClickListener(this);
         friends.setOnClickListener(this);
         createEvent.setOnClickListener(this);
         joinEvent.setOnClickListener(this);
         lookAround.setOnClickListener(this);
         settings.setOnClickListener(this);
+
+
+        mRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                currentUserName=dataSnapshot.getValue(String.class);
+                username.setText(currentUserName);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     @Override
