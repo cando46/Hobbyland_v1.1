@@ -98,6 +98,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 String state=dataSnapshot.child("LastKnownLocation").child("state").getValue(String.class);
                 String country=dataSnapshot.child("LastKnownLocation").child("country").getValue(String.class);
                 currentUserLocation=state+","+country;
+                locationText.setText(currentUserLocation);
                 username.setText(currentUserName);
                 progressDialog.dismiss();
             }
