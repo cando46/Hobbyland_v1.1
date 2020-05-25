@@ -1,16 +1,25 @@
 package com.hobbyland.version1;
 
+import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.cardview.widget.CardView;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,7 +39,13 @@ import com.hobbyland.version1.Friends.FriendsActivity;
 import com.hobbyland.version1.JoinEvent.JoinEventActivity;
 import com.hobbyland.version1.Profile.ProfileOwnerActivity;
 
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
+
 import de.hdodenhof.circleimageview.CircleImageView;
+
+import static androidx.constraintlayout.widget.Constraints.TAG;
 
 
 /**
@@ -45,10 +60,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     CardView lookAround;
     CardView settings;
     TextView username;
+    TextView locationText;
     CircleImageView userProfile;
-
+    ProgressDialog progressDialog;
     DatabaseReference mRef;
-    String currentUserName=FirebaseAuth.getInstance().getCurrentUser().getUid();
+    String currentUserName = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
     public HomeFragment() {
         // Required empty public constructor
@@ -67,24 +83,21 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     private void firebaseProcesses() {
 
-        final ProgressDialog progressDialog=new ProgressDialog(getActivity());
+        progressDialog = new ProgressDialog(getActivity());
         progressDialog.setMessage("Loading..");
         progressDialog.setIndeterminate(true);
         progressDialog.setCancelable(false);
         progressDialog.show();
-        LocationManager lm = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
-      //  Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-       // double longitude = location.getLongitude();
-       // double latitude = location.getLatitude();
 
-        mRef= FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        mRef = FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
         mRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                currentUserName=dataSnapshot.child("username").getValue(String.class);
+                currentUserName = dataSnapshot.child("username").getValue(String.class);
                 username.setText(currentUserName);
                 progressDialog.dismiss();
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
@@ -93,14 +106,15 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     private void init(View view) {
 
-        username=view.findViewById(R.id.tv_home_username);
+        username = view.findViewById(R.id.tv_home_username);
         findPartner = view.findViewById(R.id.cv_home_find_partner);
         friends = view.findViewById(R.id.cv_home_friends);
         createEvent = view.findViewById(R.id.cv_home_create_event);
         joinEvent = view.findViewById(R.id.cv_home_join_event);
         lookAround = view.findViewById(R.id.cv_home_look_around);
         settings = view.findViewById(R.id.cv_home_settings);
-        userProfile=view.findViewById(R.id.cimv_home_profile_photo);
+        userProfile = view.findViewById(R.id.cimv_home_profile_photo);
+        locationText = view.findViewById(R.id.tv_home_location_info);
         //Set on click listener for card views
         findPartner.setOnClickListener(this);
         friends.setOnClickListener(this);
@@ -108,6 +122,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         joinEvent.setOnClickListener(this);
         lookAround.setOnClickListener(this);
         settings.setOnClickListener(this);
+        userProfile.setOnClickListener(this);
 
     }
 
@@ -145,34 +160,35 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     }
 
     private void onClickSettings() {
-        Intent intent= new Intent(getActivity(), SettingsActivity.class);
+        Intent intent = new Intent(getActivity(), SettingsActivity.class);
         startActivity(intent);
 
     }
 
     private void onClickLookAround() {
-        Toast.makeText(getContext(),"Look Around Clicked",Toast.LENGTH_LONG).show();
+        Toast.makeText(getContext(), "Look Around Clicked", Toast.LENGTH_LONG).show();
     }
 
     private void onClickJoinEvent() {
-        Intent intent= new Intent(getActivity(), JoinEventActivity.class);
+        Intent intent = new Intent(getActivity(), JoinEventActivity.class);
         startActivity(intent);
 
     }
 
     private void onClickCreateEvent() {
-        Intent intent= new Intent(getActivity(), CreateEventActivity.class);
+        Intent intent = new Intent(getActivity(), CreateEventActivity.class);
         startActivity(intent);
     }
 
     private void onClickFriends() {
-        Intent intent= new Intent(getActivity(), FriendsActivity.class);
+        Intent intent = new Intent(getActivity(), FriendsActivity.class);
         startActivity(intent);
 
     }
 
     private void onClickFindPartner() {
-        Intent intent= new Intent(getActivity(), FindPartnerActivity.class);
+        Intent intent = new Intent(getActivity(), FindPartnerActivity.class);
         startActivity(intent);
     }
+
 }
