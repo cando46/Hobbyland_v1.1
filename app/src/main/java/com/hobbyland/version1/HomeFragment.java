@@ -1,6 +1,10 @@
 package com.hobbyland.version1;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +28,9 @@ import com.hobbyland.version1.CreateEvent.CreateEventActivity;
 import com.hobbyland.version1.FindPartner.FindPartnerActivity;
 import com.hobbyland.version1.Friends.FriendsActivity;
 import com.hobbyland.version1.JoinEvent.JoinEventActivity;
+import com.hobbyland.version1.Profile.ProfileOwnerActivity;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 /**
@@ -37,6 +45,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     CardView lookAround;
     CardView settings;
     TextView username;
+    CircleImageView userProfile;
 
     DatabaseReference mRef;
     String currentUserName=FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -52,12 +61,37 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         init(view);
+        firebaseProcesses();
         return view;
     }
 
-    private void init(View view) {
-        mRef= FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("username");
+    private void firebaseProcesses() {
 
+        final ProgressDialog progressDialog=new ProgressDialog(getActivity());
+        progressDialog.setMessage("Loading..");
+        progressDialog.setIndeterminate(true);
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+        LocationManager lm = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
+      //  Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+       // double longitude = location.getLongitude();
+       // double latitude = location.getLatitude();
+
+        mRef= FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        mRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                currentUserName=dataSnapshot.child("username").getValue(String.class);
+                username.setText(currentUserName);
+                progressDialog.dismiss();
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
+    }
+
+    private void init(View view) {
 
         username=view.findViewById(R.id.tv_home_username);
         findPartner = view.findViewById(R.id.cv_home_find_partner);
@@ -66,6 +100,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         joinEvent = view.findViewById(R.id.cv_home_join_event);
         lookAround = view.findViewById(R.id.cv_home_look_around);
         settings = view.findViewById(R.id.cv_home_settings);
+        userProfile=view.findViewById(R.id.cimv_home_profile_photo);
         //Set on click listener for card views
         findPartner.setOnClickListener(this);
         friends.setOnClickListener(this);
@@ -74,19 +109,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         lookAround.setOnClickListener(this);
         settings.setOnClickListener(this);
 
-
-        mRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                currentUserName=dataSnapshot.getValue(String.class);
-                username.setText(currentUserName);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
     }
 
     @Override
@@ -110,7 +132,16 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             case R.id.cv_home_settings:
                 onClickSettings();
                 break;
+            case R.id.cimv_home_profile_photo:
+                onClickProfilePhoto();
+                break;
         }
+    }
+
+    private void onClickProfilePhoto() {
+        Intent intent = new Intent(getActivity(), ProfileOwnerActivity.class);
+
+        startActivity(intent);
     }
 
     private void onClickSettings() {

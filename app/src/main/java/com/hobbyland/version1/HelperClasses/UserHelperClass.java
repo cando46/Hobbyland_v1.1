@@ -7,17 +7,37 @@ public class UserHelperClass {
     String email;
     String phone;
     String password;
-
+    String age;
+    String gender;
     public UserHelperClass() {
     }
 
-    public UserHelperClass(String fullName, String username, String email, String phone, String password) {
+    public UserHelperClass(String fullName, String username, String email, String phone, String password, String age, String gender) {
         this.fullName = fullName;
         this.username = username;
         this.email = email;
         this.phone = phone;
         this.password = password;
+        this.age = age;
+        this.gender = gender;
     }
+
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
 
     public String getFullName() {
         return fullName;

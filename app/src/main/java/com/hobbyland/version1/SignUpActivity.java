@@ -28,6 +28,8 @@ public class SignUpActivity extends AppCompatActivity {
     TextInputLayout password;
     TextInputLayout email;
     TextInputLayout phone;
+    TextInputLayout age;
+    TextInputLayout gender;
     Button register;
     Button goLogin;
     ProgressDialog progressDialog;
@@ -52,6 +54,8 @@ public class SignUpActivity extends AppCompatActivity {
         password = findViewById(R.id.et_signUp_password);
         phone = findViewById(R.id.et_signUp_phoneNo);
         email = findViewById(R.id.et_signUp_email);
+        age=findViewById(R.id.et_signUp_age);
+        gender=findViewById(R.id.et_signUp_gender);
 
         register = findViewById(R.id.btn_signUp_register);
         goLogin = findViewById(R.id.btn_signUp_already_have_account);
@@ -84,9 +88,19 @@ public class SignUpActivity extends AppCompatActivity {
                 final String pass = password.getEditText().getText().toString().trim();
                 final String phoneNo = phone.getEditText().getText().toString().trim();
                 final String mail = email.getEditText().getText().toString().trim();
+                final String uage = age.getEditText().getText().toString().trim();
+                final String ugender = gender.getEditText().getText().toString().trim();
 
                 if (TextUtils.isEmpty(name)) {
                     fullName.getEditText().setError("Full Name is Required");
+                    return;
+                }
+                if (TextUtils.isEmpty(uage)) {
+                    fullName.getEditText().setError("Age is Required");
+                    return;
+                }
+                if (TextUtils.isEmpty(ugender)) {
+                    fullName.getEditText().setError("Gender is Required");
                     return;
                 }
                 if (TextUtils.isEmpty(uName)) {
@@ -121,7 +135,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                         if(task.isSuccessful()){
 
-                            UserHelperClass user = new UserHelperClass(name,uName,mail,phoneNo,pass);
+                            UserHelperClass user = new UserHelperClass(name,uName,mail,phoneNo,pass,uage,ugender);
                             FirebaseDatabase.getInstance().getReference("Users")
                                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                     .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
