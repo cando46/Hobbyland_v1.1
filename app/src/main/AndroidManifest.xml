@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.hobbyland.version1">
+
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
-
-
 
     <application
         android:allowBackup="true"
@@ -14,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Profile.ProfileVisitorActivity"></activity>
+        <activity android:name=".Profile.AddHobbyActivity"></activity>
+        <activity android:name=".Profile.ProfileVisitorActivity" />
         <activity android:name=".Profile.ProfileOwnerActivity" />
         <activity android:name=".SettingsActivity" />
         <activity android:name=".LookAroundActivity" />
