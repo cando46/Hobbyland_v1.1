@@ -28,6 +28,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.hobbyland.version1.HomeActivity;
 import com.hobbyland.version1.R;
 
 public class ProfileOwnerActivity extends AppCompatActivity implements View.OnClickListener {
@@ -321,5 +322,11 @@ public class ProfileOwnerActivity extends AppCompatActivity implements View.OnCl
         Intent intent=new Intent(getApplicationContext(),AddHobbyActivity.class);
         startActivity(intent);
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
+        startActivity(new Intent(getApplicationContext(), HomeActivity.class));
     }
 }
