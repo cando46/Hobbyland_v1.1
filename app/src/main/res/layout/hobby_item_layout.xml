@@ -60,6 +60,7 @@
                     android:textSize="22sp"
                     android:textStyle="italic" />
                 <ImageView
+                    android:padding="2dp"
                     android:layout_marginStart="8dp"
                     android:id="@+id/imv_hobby_item_experience"
                     android:layout_width="60dp"
@@ -81,6 +82,7 @@
                     android:textSize="22sp"
                     android:textStyle="italic" />
                 <ImageView
+                    android:padding="2dp"
                     android:layout_marginStart="8dp"
                     android:id="@+id/imv_hobby_item_knowledge"
                     android:layout_width="60dp"
@@ -102,6 +104,7 @@
                     android:textSize="22sp"
                     android:textStyle="italic" />
                 <ImageView
+                    android:padding="2dp"
                     android:layout_marginStart="8dp"
                     android:id="@+id/imv_hobby_item_skill_level"
                     android:layout_width="60dp"

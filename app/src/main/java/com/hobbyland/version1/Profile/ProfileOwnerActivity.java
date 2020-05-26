@@ -53,6 +53,7 @@ public class ProfileOwnerActivity extends AppCompatActivity implements View.OnCl
         setContentView(R.layout.activity_profile_owner);
         initViews();
         initRecyclerView();
+        adapter.startListening();
     }
 
 
