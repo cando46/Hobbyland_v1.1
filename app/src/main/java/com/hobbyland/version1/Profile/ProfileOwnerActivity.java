@@ -75,8 +75,8 @@ public class ProfileOwnerActivity extends AppCompatActivity implements View.OnCl
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 currentUserName = dataSnapshot.child("username").getValue(String.class);
-                currentUserAge = dataSnapshot.child("age").getValue(String.class);
-                currentUserGender = dataSnapshot.child("gender").getValue(String.class);
+                currentUserAge = "  Age: "+dataSnapshot.child("age").getValue(String.class);
+                currentUserGender = "Gender: "+dataSnapshot.child("gender").getValue(String.class);
                 currentUserStatus = dataSnapshot.child("status").getValue(String.class);
 
                 tvStatus.setText(currentUserStatus);
