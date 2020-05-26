@@ -56,7 +56,7 @@ public class ProfileOwnerActivity extends AppCompatActivity implements View.OnCl
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         initViews();
         initRecyclerView();
-        adapter.startListening();
+
     }
 
 
