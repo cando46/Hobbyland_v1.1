@@ -128,7 +128,8 @@ public class AddHobbyActivity extends AppCompatActivity implements AdapterView.O
     }
 
     DatabaseReference mRef = FirebaseDatabase.getInstance().getReference("HobbyUID").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Hobbies");
-    ;
+    DatabaseReference hobbyRef = FirebaseDatabase.getInstance().getReference("HobbyCategory");
+
 
     private void onClickAdd() {
         if (hobbyName == 0 || exp == 0 || knowledge == 0 || skill == 0) {
@@ -142,6 +143,8 @@ public class AddHobbyActivity extends AppCompatActivity implements AdapterView.O
                         String.valueOf(knowledge),
                         String.valueOf(skill));
                     mRef.child("Football").setValue(hobbyItem);
+                   // hobbyRef.child("Football").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(hobbyItem);
+
                     break;
                 case 2:
                     HobbyItem hobbyItem2= new HobbyItem("Basketball",

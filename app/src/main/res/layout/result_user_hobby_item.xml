@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="8dp">
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:padding="8dp"
+        app:cardElevation="11dp"
+        app:cardCornerRadius="18dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imv_fp_result_user_profile_photo"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="12dp"
+                android:padding="2dp"
+                android:src="@drawable/man"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_fp_result_age"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Age: 18"
+                app:layout_constraintEnd_toEndOf="@+id/imv_fp_result_user_profile_photo"
+                app:layout_constraintStart_toStartOf="@+id/imv_fp_result_user_profile_photo"
+                app:layout_constraintTop_toBottomOf="@id/imv_fp_result_user_profile_photo" />
+
+            <TextView
+                android:id="@+id/tv_fp_result_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Username"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="#000"
+                app:layout_constraintBottom_toBottomOf="@+id/imv_fp_result_user_profile_photo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imv_fp_result_user_profile_photo"
+                app:layout_constraintTop_toTopOf="@+id/imv_fp_result_user_profile_photo" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cons_layout_fp_result_expandable"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_fp_result_age">
+
+                <LinearLayout
+                    android:id="@+id/linearly"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="75dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <LinearLayout
+                        android:padding="12dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/imv_fp_result_hobby_photo"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="8dp"
+                            android:src="@drawable/tennis" />
+
+                        <TextView
+                            android:id="@+id/tv_fp_result_hobby_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="Hobby Name"
+                            android:textColor="#000000"
+                            android:textSize="16sp" />
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="50dp"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_marginTop="6dp"
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="1dp"
+                                android:text="Experience"
+                                android:textColor="#000000"
+                                android:textSize="16sp"
+                                android:textStyle="italic" />
+
+                            <ImageView
+                                android:id="@+id/imv_fp_result_experience"
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
+                                android:layout_marginStart="28dp"
+                                android:padding="2dp"
+                                android:src="@drawable/one_year" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_marginTop="6dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="1dp"
+                                android:text="Knowledge"
+                                android:textColor="#000000"
+                                android:textSize="16sp"
+                                android:textStyle="italic" />
+
+                            <ImageView
+                                android:id="@+id/imv_fp_result_knowledge"
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
+                                android:layout_marginStart="28dp"
+                                android:padding="2dp"
+                                android:src="@drawable/one_year" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_marginTop="6dp"
+                            android:layout_marginBottom="6dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="1dp"
+                                android:text=" Skill Level "
+                                android:textColor="#000000"
+                                android:textSize="16sp"
+                                android:textStyle="italic" />
+
+                            <ImageView
+                                android:id="@+id/imv_fp_result_skill_level"
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
+                                android:layout_marginStart="28dp"
+                                android:padding="2dp"
+                                android:src="@drawable/one_year" />
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btn_fp_result_see_profile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="32dp"
+                    android:layout_marginBottom="16dp"
+                    android:text="See Profile"
+                    android:textAllCaps="false"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/btn_fp_result_add_friend"
+                    app:layout_constraintTop_toBottomOf="@id/linearly" />
+
+                <Button
+                    android:id="@+id/btn_fp_result_add_friend"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:text="Add Friend"
+                    android:textAllCaps="false"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/linearly" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>
