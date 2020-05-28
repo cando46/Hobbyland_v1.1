@@ -99,6 +99,15 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 String country=dataSnapshot.child("LastKnownLocation").child("country").getValue(String.class);
                 currentUserLocation=state+","+country;
                 locationText.setText(currentUserLocation);
+                switch (dataSnapshot.child("gender").getValue(String.class)){
+                    case "Male":
+                        userProfile.setImageResource(R.drawable.man);
+                        break;
+                    case"Female":
+                        userProfile.setImageResource(R.drawable.girl1);
+                        break;
+                }
+
                 username.setText(currentUserName);
                 progressDialog.dismiss();
             }

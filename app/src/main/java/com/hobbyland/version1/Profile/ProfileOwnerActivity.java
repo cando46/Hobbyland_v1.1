@@ -31,6 +31,8 @@ import com.google.firebase.database.ValueEventListener;
 import com.hobbyland.version1.HomeActivity;
 import com.hobbyland.version1.R;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class ProfileOwnerActivity extends AppCompatActivity implements View.OnClickListener {
     TextView tvUsername;
     TextView tvAge;
@@ -47,6 +49,7 @@ public class ProfileOwnerActivity extends AppCompatActivity implements View.OnCl
     String currentUserAge;
     String currentUserStatus;
     String currentUserGender;
+    CircleImageView userProfilePhoto;
 
 
     @Override
@@ -233,6 +236,7 @@ public class ProfileOwnerActivity extends AppCompatActivity implements View.OnCl
         editPhoto = findViewById(R.id.btn_profile_owner_edit_photo);
         addHobby = findViewById(R.id.btn_profile_owner_add_hobby);
         editStatus = findViewById(R.id.btn_profile_owner_edit_status);
+        userProfilePhoto=findViewById(R.id.cimv_profile_owner_photo);
         editPhoto.setOnClickListener(this);
         addHobby.setOnClickListener(this);
         editStatus.setOnClickListener(this);
@@ -256,6 +260,16 @@ public class ProfileOwnerActivity extends AppCompatActivity implements View.OnCl
                 currentUserAge = "  Age: " + dataSnapshot.child("age").getValue(String.class);
                 currentUserGender = "Gender: " + dataSnapshot.child("gender").getValue(String.class);
                 currentUserStatus = dataSnapshot.child("status").getValue(String.class);
+
+
+                switch (currentUserGender){
+                    case "Gender: Male":
+                        userProfilePhoto.setImageResource(R.drawable.man);
+                        break;
+                    case"Gender: Female":
+                        userProfilePhoto.setImageResource(R.drawable.girl1);
+                        break;
+                }
 
                 tvStatus.setText(currentUserStatus);
                 tvAge.setText(currentUserAge);
