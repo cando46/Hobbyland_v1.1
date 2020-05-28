@@ -100,7 +100,7 @@
 
         android:id="@+id/rv_profile_visitor_hobbies"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="190dp"
         android:orientation="horizontal"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/hobby_item_layout" />

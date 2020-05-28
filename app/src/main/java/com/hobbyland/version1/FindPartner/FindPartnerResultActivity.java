@@ -23,6 +23,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.hobbyland.version1.HelperClasses.ResultHelperClass;
+import com.hobbyland.version1.Profile.ProfileVisitorActivity;
 import com.hobbyland.version1.R;
 
 public class FindPartnerResultActivity extends AppCompatActivity {
@@ -101,6 +102,9 @@ public class FindPartnerResultActivity extends AppCompatActivity {
                 resultViewHolder.seeProfile.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        Intent intent = new Intent(getApplicationContext(), ProfileVisitorActivity.class);
+                        intent.putExtra("UID",resultItem.getUID());
+                        startActivity(intent);
 
                     }
                 });

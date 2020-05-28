@@ -198,7 +198,6 @@ public class ProfileOwnerActivity extends AppCompatActivity implements View.OnCl
 
                 View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.hobby_item_layout, parent, false);
 
-
                 return new HobbyViewHolder(view);
             }
         };
