@@ -1,6 +1,7 @@
-package com.hobbyland.version1.FindPartner;
+package com.hobbyland.version1.HelperClasses;
 
-public class ResultItem {
+public class ResultHelperClass {
+
     String username;
     String age;
     String experience;
@@ -8,20 +9,11 @@ public class ResultItem {
     String skill;
     String UID;
     String hobbyName;
-    private boolean expanded;
 
-    public boolean isExpanded() {
-        return expanded;
+    public ResultHelperClass() {
     }
 
-    public void setExpanded(boolean expanded) {
-        this.expanded = expanded;
-    }
-
-    public ResultItem() {
-    }
-
-    public ResultItem(String username, String age, String experience, String knowledge, String skill, String UID, String hobbyName) {
+    public ResultHelperClass(String username, String age, String experience, String knowledge, String skill, String UID, String hobbyName) {
         this.username = username;
         this.age = age;
         this.experience = experience;
@@ -29,9 +21,7 @@ public class ResultItem {
         this.skill = skill;
         this.UID = UID;
         this.hobbyName = hobbyName;
-        expanded=false;
     }
-
 
     public String getUsername() {
         return username;

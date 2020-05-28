@@ -6,6 +6,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.hobbyland.version1.R;
@@ -22,6 +23,7 @@ public class ResultViewHolder extends RecyclerView.ViewHolder {
     ImageView skillLevel;
     Button addFriend;
     Button seeProfile;
+    ConstraintLayout expandable;
 
 
 
@@ -37,20 +39,6 @@ public class ResultViewHolder extends RecyclerView.ViewHolder {
         skillLevel=itemView.findViewById(R.id.imv_fp_result_skill_level);
         addFriend=itemView.findViewById(R.id.btn_fp_result_add_friend);
         seeProfile=itemView.findViewById(R.id.btn_fp_result_see_profile);
-
-        addFriend.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-        seeProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-            }
-        });
+        expandable=itemView.findViewById(R.id.cons_layout_fp_result_expandable);
     }
 }

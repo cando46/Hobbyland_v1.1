@@ -1,10 +1,12 @@
 package com.hobbyland.version1.Profile;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -12,8 +14,13 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.hobbyland.version1.FindPartner.ResultItem;
+import com.hobbyland.version1.HelperClasses.ResultHelperClass;
 import com.hobbyland.version1.R;
 
 public class AddHobbyActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener {
@@ -22,6 +29,7 @@ public class AddHobbyActivity extends AppCompatActivity implements AdapterView.O
     Spinner spExperience;
     Spinner spKnowledge;
     Spinner spSkillLevel;
+    //spinner için int değerler
     int hobbyName, exp, knowledge, skill;
     Button cancel;
     Button add;
@@ -31,12 +39,37 @@ public class AddHobbyActivity extends AppCompatActivity implements AdapterView.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_hobby);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         initSpinners();
 
         cancel = findViewById(R.id.btn_add_hobby_cancel);
         add = findViewById(R.id.btn_add_hobby_add);
         cancel.setOnClickListener(this);
         add.setOnClickListener(this);
+        getUserInfo();
+    }
+
+    String username;
+    String UID;
+    String age;
+    DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+
+    private void getUserInfo() {
+        userRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                username = dataSnapshot.child("username").getValue(String.class);
+                age = dataSnapshot.child("age").getValue(String.class);
+                //currentUserGender = dataSnapshot.child("gender").getValue(String.class);
+                UID = FirebaseAuth.getInstance().getUid();
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     private void initSpinners() {
@@ -128,7 +161,7 @@ public class AddHobbyActivity extends AppCompatActivity implements AdapterView.O
     }
 
     DatabaseReference mRef = FirebaseDatabase.getInstance().getReference("HobbyUID").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Hobbies");
-    DatabaseReference hobbyRef = FirebaseDatabase.getInstance().getReference("HobbyCategory");
+    DatabaseReference hobbyRef = FirebaseDatabase.getInstance().getReference("Hobby");
 
 
     private void onClickAdd() {
@@ -136,64 +169,138 @@ public class AddHobbyActivity extends AppCompatActivity implements AdapterView.O
             Toast.makeText(getApplicationContext(), "Complete The Missing Informations!", Toast.LENGTH_SHORT).show();
         } else {
 
-            switch (hobbyName){
+            switch (hobbyName) {
                 case 1:
-                    HobbyItem hobbyItem= new HobbyItem("Football",
-                        String.valueOf(exp),
-                        String.valueOf(knowledge),
-                        String.valueOf(skill));
+                    HobbyItem hobbyItem = new HobbyItem("Football",
+                            String.valueOf(exp),
+                            String.valueOf(knowledge),
+                            String.valueOf(skill));
+
+                    ResultHelperClass resultItem = new ResultHelperClass(
+                            username,
+                            age,
+                            String.valueOf(exp),
+                            String.valueOf(knowledge),
+                            String.valueOf(skill), UID,
+                            "Football");
+
                     mRef.child("Football").setValue(hobbyItem);
-                   // hobbyRef.child("Football").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(hobbyItem);
+                    hobbyRef.child("Football").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(resultItem);
 
                     break;
                 case 2:
-                    HobbyItem hobbyItem2= new HobbyItem("Basketball",
+                    HobbyItem hobbyItem2 = new HobbyItem("Basketball",
                             String.valueOf(exp),
                             String.valueOf(knowledge),
                             String.valueOf(skill));
+
+                    ResultHelperClass resultItem2 = new ResultHelperClass(
+                            username,
+                            age,
+                            String.valueOf(exp),
+                            String.valueOf(knowledge),
+                            String.valueOf(skill), UID,
+                            "Basketball");
+
                     mRef.child("Basketball").setValue(hobbyItem2);
+                    hobbyRef.child("Basketball").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(resultItem2);
                     break;
                 case 3:
-                    HobbyItem hobbyItem3= new HobbyItem("Volleyball",
+                    HobbyItem hobbyItem3 = new HobbyItem("Volleyball",
                             String.valueOf(exp),
                             String.valueOf(knowledge),
                             String.valueOf(skill));
+
+                    ResultHelperClass resultItem3 = new ResultHelperClass(
+                            username,
+                            age,
+                            String.valueOf(exp),
+                            String.valueOf(knowledge),
+                            String.valueOf(skill), UID,
+                            "Volleyball");
                     mRef.child("Volleyball").setValue(hobbyItem3);
+                    hobbyRef.child("Volleyball").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(resultItem3);
                     break;
                 case 4:
-                    HobbyItem hobbyItem4= new HobbyItem("Tennis",
+                    HobbyItem hobbyItem4 = new HobbyItem("Tennis",
                             String.valueOf(exp),
                             String.valueOf(knowledge),
                             String.valueOf(skill));
+
+                    ResultHelperClass resultItem4 = new ResultHelperClass(
+                            username,
+                            age,
+                            String.valueOf(exp),
+                            String.valueOf(knowledge),
+                            String.valueOf(skill), UID,
+                            "Tennis");
                     mRef.child("Tennis").setValue(hobbyItem4);
+                    hobbyRef.child("Tennis").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(resultItem4);
                     break;
                 case 5:
-                    HobbyItem hobbyItem5= new HobbyItem("Trekking",
+                    HobbyItem hobbyItem5 = new HobbyItem("Trekking",
                             String.valueOf(exp),
                             String.valueOf(knowledge),
                             String.valueOf(skill));
+
+                    ResultHelperClass resultItem5 = new ResultHelperClass(
+                            username,
+                            age,
+                            String.valueOf(exp),
+                            String.valueOf(knowledge),
+                            String.valueOf(skill), UID,
+                            "Trekking");
                     mRef.child("Trekking").setValue(hobbyItem5);
+                    hobbyRef.child("Trekking").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(resultItem5);
                     break;
                 case 6:
-                    HobbyItem hobbyItem6= new HobbyItem("Running",
+                    HobbyItem hobbyItem6 = new HobbyItem("Running",
                             String.valueOf(exp),
                             String.valueOf(knowledge),
                             String.valueOf(skill));
+
+                    ResultHelperClass resultItem6 = new ResultHelperClass(
+                            username,
+                            age,
+                            String.valueOf(exp),
+                            String.valueOf(knowledge),
+                            String.valueOf(skill), UID,
+                            "Running");
                     mRef.child("Running").setValue(hobbyItem6);
+                    hobbyRef.child("Running").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(resultItem6);
                     break;
                 case 7:
-                    HobbyItem hobbyItem7= new HobbyItem("TableTennis",
+                    HobbyItem hobbyItem7 = new HobbyItem("TableTennis",
                             String.valueOf(exp),
                             String.valueOf(knowledge),
                             String.valueOf(skill));
+
+                    ResultHelperClass resultItem7 = new ResultHelperClass(
+                            username,
+                            age,
+                            String.valueOf(exp),
+                            String.valueOf(knowledge),
+                            String.valueOf(skill), UID,
+                            "TableTennis");
                     mRef.child("TableTennis").setValue(hobbyItem7);
+                    hobbyRef.child("TableTennis").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(resultItem7);
                     break;
                 case 8:
-                    HobbyItem hobbyItem8= new HobbyItem("Swimming",
+                    HobbyItem hobbyItem8 = new HobbyItem("Swimming",
                             String.valueOf(exp),
                             String.valueOf(knowledge),
                             String.valueOf(skill));
+
+                    ResultHelperClass resultItem8 = new ResultHelperClass(
+                            username,
+                            age,
+                            String.valueOf(exp),
+                            String.valueOf(knowledge),
+                            String.valueOf(skill), UID,
+                            "Swimming");
+
                     mRef.child("Swimming").setValue(hobbyItem8);
+                    hobbyRef.child("Swimming").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(resultItem8);
                     break;
             }
 

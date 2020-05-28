@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
+import android.view.WindowManager;
 
 import com.hobbyland.version1.CreateEvent.CeStepOneFragment;
 import com.hobbyland.version1.CreateEvent.CeStepTwoFragment;
@@ -18,6 +19,7 @@ public class CreateEventActivity extends AppCompatActivity implements CeStepOneF
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_event);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         init();
     }
 

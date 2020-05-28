@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
+import android.view.WindowManager;
 
 import com.hobbyland.version1.FindPartner.FpResultsFragment;
 import com.hobbyland.version1.FindPartner.FpStepOneFragment;
@@ -24,6 +25,7 @@ public class FindPartnerActivity extends AppCompatActivity implements FpStepOneF
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_partner);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         init();
 
 

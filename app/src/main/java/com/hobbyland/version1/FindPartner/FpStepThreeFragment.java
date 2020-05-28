@@ -1,6 +1,7 @@
 package com.hobbyland.version1.FindPartner;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -110,6 +111,9 @@ public class FpStepThreeFragment extends Fragment implements AdapterView.OnItemS
         findPartner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent=new Intent(getActivity(),FindPartnerResultActivity.class);
+                intent.putExtra("HOBBY_ID",getArguments().getInt("HOBBY_ID"));
+                startActivity(intent);
 
             }
         });
