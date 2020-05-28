@@ -16,8 +16,12 @@ import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.hobbyland.version1.HelperClasses.ResultHelperClass;
 import com.hobbyland.version1.R;
 
@@ -27,6 +31,7 @@ public class FindPartnerResultActivity extends AppCompatActivity {
     FirebaseRecyclerOptions<ResultItem> options;
     FirebaseRecyclerAdapter<ResultItem, ResultViewHolder> adapter;
     TextView noResult;
+    String gender;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +43,8 @@ public class FindPartnerResultActivity extends AppCompatActivity {
         noResult=findViewById(R.id.tv_results_no_matches);
         initRecyclerView(hobbyID);
     }
+
+
 
     private void initRecyclerView(int hobbyId) {
         rv = findViewById(R.id.rv_find_partner_results_list);
@@ -72,7 +79,7 @@ public class FindPartnerResultActivity extends AppCompatActivity {
 
         adapter = new FirebaseRecyclerAdapter<ResultItem, ResultViewHolder>(options) {
             @Override
-            protected void onBindViewHolder(@NonNull ResultViewHolder resultViewHolder, final int i, @NonNull final ResultItem resultItem) {
+            protected void onBindViewHolder(@NonNull final ResultViewHolder resultViewHolder, final int i, @NonNull final ResultItem resultItem) {
 
                 noResult.setVisibility(View.INVISIBLE);
                 boolean isExpanded = resultItem.isExpanded();
@@ -98,9 +105,32 @@ public class FindPartnerResultActivity extends AppCompatActivity {
                     }
                 });
 
+                String UID = resultItem.getUID();
+                DatabaseReference genderRef= FirebaseDatabase.getInstance().getReference("Users").child(UID);
+                genderRef.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        String gender=dataSnapshot.child("gender").getValue(String.class);
+                        switch (gender){
+                            case "Male":
+                                resultViewHolder.userProfile.setImageResource(R.drawable.man);
+                                break;
+                            case"Female":
+                                resultViewHolder.userProfile.setImageResource(R.drawable.girl1);
+                                break;
+                            default:
+                               resultViewHolder.userProfile.setImageResource(R.drawable.girl2);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
                 //Set Username User Profile User Age
                 resultViewHolder.username.setText(resultItem.username);
-                resultViewHolder.userProfile.setImageResource(R.drawable.man);
                 resultViewHolder.age.setText("Age: " + resultItem.age);
 
                 //hobbyname and image
