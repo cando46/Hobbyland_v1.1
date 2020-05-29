@@ -245,7 +245,7 @@ public class ProfileVisitorActivity extends AppCompatActivity implements View.On
         sendMessage.setOnClickListener(this);
         if (isFriend==0){
             removeFriend.setVisibility(View.INVISIBLE);
-            addFriend.setVisibility(View.VISIBLE);
+            addFriend.setVisibility(View.INVISIBLE);
         }
         else {
             addFriend.setVisibility(View.INVISIBLE);
