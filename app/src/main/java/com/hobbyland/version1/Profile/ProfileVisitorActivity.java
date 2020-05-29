@@ -46,6 +46,7 @@ public class ProfileVisitorActivity extends AppCompatActivity implements View.On
     ImageView removeFriend;
     ImageView reportUser;
     ImageView sendMessage;
+    int isFriend;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +54,8 @@ public class ProfileVisitorActivity extends AppCompatActivity implements View.On
         setContentView(R.layout.activity_profile_visitor);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         Intent intent = getIntent();
-        UID=intent.getStringExtra("UID");
+        UID = intent.getStringExtra("UID");
+        isFriend=intent.getIntExtra("Friend",0);
         initView();
         initRecyclerView();
 
@@ -62,6 +64,7 @@ public class ProfileVisitorActivity extends AppCompatActivity implements View.On
     FirebaseRecyclerOptions<HobbyItem> options;
     FirebaseRecyclerAdapter<HobbyItem, HobbyViewHolder> adapter;
     DatabaseReference hobbyRef;
+
     private void initRecyclerView() {
         rv = findViewById(R.id.rv_profile_visitor_hobbies);
         rv.setHasFixedSize(true);
@@ -202,6 +205,7 @@ public class ProfileVisitorActivity extends AppCompatActivity implements View.On
         rv.setAdapter(adapter);
 
     }
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -224,23 +228,32 @@ public class ProfileVisitorActivity extends AppCompatActivity implements View.On
     }
 
     DatabaseReference mRef;
+
     private void initView() {
-        username=findViewById(R.id.tv_profile_visitor_username);
-        age=findViewById(R.id.tv_profile_visitor_age);
-        gender=findViewById(R.id.tv_profile_visitor_gender);
-        status=findViewById(R.id.tv_profile_visitor_status);
-        userProfile=findViewById(R.id.cimv_profile_visitor_photo);
-        addFriend=findViewById(R.id.imv_profile_visitor_add_friend);
-        removeFriend=findViewById(R.id.imv_profile_visitor_delete_friend);
-        reportUser=findViewById(R.id.imv_profile_visitor_report_user);
-        sendMessage=findViewById(R.id.imv_profile_visitor_send_message);
+        username = findViewById(R.id.tv_profile_visitor_username);
+        age = findViewById(R.id.tv_profile_visitor_age);
+        gender = findViewById(R.id.tv_profile_visitor_gender);
+        status = findViewById(R.id.tv_profile_visitor_status);
+        userProfile = findViewById(R.id.cimv_profile_visitor_photo);
+        addFriend = findViewById(R.id.imv_profile_visitor_add_friend);
+        removeFriend = findViewById(R.id.imv_profile_visitor_delete_friend);
+        reportUser = findViewById(R.id.imv_profile_visitor_report_user);
+        sendMessage = findViewById(R.id.imv_profile_visitor_send_message);
         addFriend.setOnClickListener(this);
         removeFriend.setOnClickListener(this);
         reportUser.setOnClickListener(this);
         sendMessage.setOnClickListener(this);
-        removeFriend.setVisibility(View.INVISIBLE);
+        if (isFriend==0){
+            removeFriend.setVisibility(View.INVISIBLE);
+            addFriend.setVisibility(View.VISIBLE);
+        }
+        else {
+            addFriend.setVisibility(View.INVISIBLE);
+            removeFriend.setVisibility(View.VISIBLE);
+        }
 
-        mRef= FirebaseDatabase.getInstance().getReference("Users").child(UID);
+
+        mRef = FirebaseDatabase.getInstance().getReference("Users").child(UID);
         PullProfileInfo();
 
     }
@@ -263,11 +276,11 @@ public class ProfileVisitorActivity extends AppCompatActivity implements View.On
                 String currentUserStatus = dataSnapshot.child("status").getValue(String.class);
 
 
-                switch (currentUserGender){
+                switch (currentUserGender) {
                     case "Gender: Male":
                         userProfile.setImageResource(R.drawable.man);
                         break;
-                    case"Gender: Female":
+                    case "Gender: Female":
                         userProfile.setImageResource(R.drawable.girl1);
                         break;
                 }
@@ -308,8 +321,23 @@ public class ProfileVisitorActivity extends AppCompatActivity implements View.On
     }
 
     String complaint;
-    private void onClickReportUser() {
+    long maxId = 0;
+    DatabaseReference compRef;
 
+    private void onClickReportUser() {
+        compRef = FirebaseDatabase.getInstance().getReference("Complaints").child(UID);
+        compRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists())
+                    maxId=(dataSnapshot.getChildrenCount());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
         final AlertDialog.Builder mDialog = new AlertDialog.Builder(ProfileVisitorActivity.this);
         mDialog.setTitle("Write your complaint!");
 
@@ -317,15 +345,14 @@ public class ProfileVisitorActivity extends AppCompatActivity implements View.On
         EtStatus.setInputType(InputType.TYPE_CLASS_TEXT);
         mDialog.setView(EtStatus);
 
-        EtStatus.setPadding(50,50,50,50);
+        EtStatus.setPadding(50, 50, 50, 50);
 
 
         mDialog.setPositiveButton("Send Report", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 complaint = EtStatus.getText().toString();
-                DatabaseReference compRef=FirebaseDatabase.getInstance().getReference("Complaints");
-                compRef.child(UID).setValue(complaint);
+                compRef.child(String.valueOf(maxId+1)).setValue(complaint);
                 Toast.makeText(getApplicationContext(), "Your complaint has been received. ", Toast.LENGTH_SHORT).show();
             }
         });

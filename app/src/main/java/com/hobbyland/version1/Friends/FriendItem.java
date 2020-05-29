@@ -1,27 +1,40 @@
 package com.hobbyland.version1.Friends;
 
 public class FriendItem {
-    private int profileImgResource;
-    private  String name;
+   String username;
+   String status;
+   String UID;
 
-    public FriendItem(int profileImgResource, String name) {
-        this.profileImgResource = profileImgResource;
-        this.name = name;
+    public String getUID() {
+        return UID;
     }
 
-    public int getProfileImgResource() {
-        return profileImgResource;
+    public void setUID(String UID) {
+        this.UID = UID;
     }
 
-    public void setProfileImgResource(int profileImgResource) {
-        this.profileImgResource = profileImgResource;
+    public FriendItem(String username, String status, String UID) {
+        this.username = username;
+        this.status = status;
+        this.UID=UID;
     }
 
-    public String getName() {
-        return name;
+    public FriendItem() {
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

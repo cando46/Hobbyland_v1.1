@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -22,6 +23,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.hobbyland.version1.Friends.FriendItem;
 import com.hobbyland.version1.HelperClasses.ResultHelperClass;
 import com.hobbyland.version1.Profile.ProfileVisitorActivity;
 import com.hobbyland.version1.R;
@@ -33,6 +35,7 @@ public class FindPartnerResultActivity extends AppCompatActivity {
     FirebaseRecyclerAdapter<ResultItem, ResultViewHolder> adapter;
     TextView noResult;
     String gender;
+    String status;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +49,7 @@ public class FindPartnerResultActivity extends AppCompatActivity {
     }
 
 
+    DatabaseReference dRef;
 
     private void initRecyclerView(int hobbyId) {
         rv = findViewById(R.id.rv_find_partner_results_list);
@@ -85,7 +89,6 @@ public class FindPartnerResultActivity extends AppCompatActivity {
                 noResult.setVisibility(View.INVISIBLE);
                 boolean isExpanded = resultItem.isExpanded();
                 resultViewHolder.expandable.setVisibility(isExpanded ? View.VISIBLE : View.GONE);
-
                 resultViewHolder.username.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -96,7 +99,24 @@ public class FindPartnerResultActivity extends AppCompatActivity {
                 resultViewHolder.addFriend.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        final FriendItem friendItem= new FriendItem(resultItem.getUsername(),status,resultItem.getUID());
+                        dRef=FirebaseDatabase.getInstance().getReference("Friends").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+                        dRef.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                if(dataSnapshot.hasChild(resultItem.getUID())){
+                                    Toast.makeText(getApplicationContext(), "Friend Already Added ", Toast.LENGTH_SHORT).show();
+                                }
+                                else {
+                                    dRef.child(resultItem.getUID()).setValue(friendItem);
+                                }
+                            }
 
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
                     }
                 });
                 resultViewHolder.seeProfile.setOnClickListener(new View.OnClickListener() {
@@ -115,6 +135,7 @@ public class FindPartnerResultActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         String gender=dataSnapshot.child("gender").getValue(String.class);
+                        status=dataSnapshot.child("status").getValue(String.class);
                         switch (gender){
                             case "Male":
                                 resultViewHolder.userProfile.setImageResource(R.drawable.man);
