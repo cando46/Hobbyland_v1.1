@@ -101,7 +101,7 @@ public class FindPartnerResultActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         final FriendItem friendItem= new FriendItem(resultItem.getUsername(),status,resultItem.getUID());
                         dRef=FirebaseDatabase.getInstance().getReference("Friends").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
-                        dRef.addValueEventListener(new ValueEventListener() {
+                        dRef.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 if(dataSnapshot.hasChild(resultItem.getUID())){
@@ -109,6 +109,7 @@ public class FindPartnerResultActivity extends AppCompatActivity {
                                 }
                                 else {
                                     dRef.child(resultItem.getUID()).setValue(friendItem);
+                                    Toast.makeText(getApplicationContext(), "Friend Added ", Toast.LENGTH_SHORT).show();
                                 }
                             }
 
