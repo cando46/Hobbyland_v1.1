@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -74,7 +75,6 @@ public class JoinEventActivity extends AppCompatActivity {
                 eventViewHolder.join.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
                         EventHelperClass event= new EventHelperClass(eventItem.getTitle(),
                                 eventItem.getHobbyName(),
                                 eventItem.getDate(),
@@ -82,7 +82,7 @@ public class JoinEventActivity extends AppCompatActivity {
                                 eventItem.getLocation(),
                                 FirebaseAuth.getInstance().getCurrentUser().getUid());
                         userEvent.child(eventItem.getTitle()).setValue(event);
-
+                        Toast.makeText(getApplicationContext(), "You have been joined "+eventItem.getTitle(), Toast.LENGTH_SHORT).show();
                     }
                 });
                 eventViewHolder.details.setOnClickListener(new View.OnClickListener() {
