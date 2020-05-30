@@ -1,6 +1,6 @@
-package com.hobbyland.version1.JoinEvent;
+package com.hobbyland.version1.HelperClasses;
 
-public class EventItem {
+public class EventHelperClass {
 
     private String title;
     private String hobbyName;
@@ -8,19 +8,17 @@ public class EventItem {
     private String quota;
     private String location;
     private String creatorUID;
-    private boolean expanded;
 
-    public EventItem() {
-    }
-
-    public EventItem(String title, String hobbyName, String date, String quota, String location, String creatorUID) {
+    public EventHelperClass(String title, String hobbyName, String date, String quota, String location, String creatorUID) {
         this.title = title;
         this.hobbyName = hobbyName;
         this.date = date;
         this.quota = quota;
         this.location = location;
         this.creatorUID = creatorUID;
-        expanded=false;
+    }
+
+    public EventHelperClass() {
     }
 
     public String getTitle() {
@@ -69,13 +67,5 @@ public class EventItem {
 
     public void setCreatorUID(String creatorUID) {
         this.creatorUID = creatorUID;
-    }
-
-    public boolean isExpanded() {
-        return expanded;
-    }
-
-    public void setExpanded(boolean expanded) {
-        this.expanded = expanded;
     }
 }

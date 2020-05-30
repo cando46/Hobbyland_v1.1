@@ -10,7 +10,7 @@ import com.hobbyland.version1.CreateEvent.CeStepOneFragment;
 import com.hobbyland.version1.CreateEvent.CeStepTwoFragment;
 import com.hobbyland.version1.R;
 
-public class CreateEventActivity extends AppCompatActivity implements CeStepOneFragment.CeStepOneListener, CeStepTwoFragment.CeStepTwoListener {
+public class CreateEventActivity extends AppCompatActivity implements CeStepOneFragment.CeStepOneListener{
 
     FragmentManager fragmentManager;
     private CeStepOneFragment stepOneFragment;
@@ -47,8 +47,4 @@ public class CreateEventActivity extends AppCompatActivity implements CeStepOneF
 
     }
 
-    @Override
-    public void inputCeStepTwoSent(int hobbyID) {
-
-    }
 }

@@ -109,7 +109,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="30dp"
-            android:text="Go Next Step"
+            android:text="Create Event"
             android:textAllCaps="false"
             android:textSize="24sp" />
 
