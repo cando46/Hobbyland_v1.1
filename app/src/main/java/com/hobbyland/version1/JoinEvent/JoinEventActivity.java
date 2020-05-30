@@ -82,7 +82,7 @@ public class JoinEventActivity extends AppCompatActivity {
                                 eventItem.getLocation(),
                                 FirebaseAuth.getInstance().getCurrentUser().getUid());
                         userEvent.child(eventItem.getTitle()).setValue(event);
-                        Toast.makeText(getApplicationContext(), "You have been joined "+eventItem.getTitle(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "You have been joined' "+eventItem.getTitle()+"'", Toast.LENGTH_SHORT).show();
                     }
                 });
                 eventViewHolder.details.setOnClickListener(new View.OnClickListener() {
