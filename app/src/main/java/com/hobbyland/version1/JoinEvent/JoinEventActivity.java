@@ -13,8 +13,10 @@ import android.view.WindowManager;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.hobbyland.version1.HelperClasses.EventHelperClass;
 import com.hobbyland.version1.R;
 
 import java.util.ArrayList;
@@ -25,6 +27,7 @@ public class JoinEventActivity extends AppCompatActivity {
     DatabaseReference mRef;
     FirebaseRecyclerOptions<EventItem> options;
     FirebaseRecyclerAdapter<EventItem, EventViewHolder> adapter;
+    DatabaseReference userEvent;
 
 
     @Override
@@ -65,9 +68,20 @@ public class JoinEventActivity extends AppCompatActivity {
                         notifyItemChanged(i);
                     }
                 });
+
+                userEvent=FirebaseDatabase.getInstance().getReference("Event").child("UserEvent").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+
                 eventViewHolder.join.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+
+                        EventHelperClass event= new EventHelperClass(eventItem.getTitle(),
+                                eventItem.getHobbyName(),
+                                eventItem.getDate(),
+                                eventItem.getQuota(),
+                                eventItem.getLocation(),
+                                FirebaseAuth.getInstance().getCurrentUser().getUid());
+                        userEvent.child(eventItem.getTitle()).setValue(event);
 
                     }
                 });
